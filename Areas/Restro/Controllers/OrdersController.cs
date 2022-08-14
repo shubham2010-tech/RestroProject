@@ -81,6 +81,7 @@ namespace ResTask.Areas.Restro.Controllers
             {
                 return NotFound();
             }
+            ViewData["DishName"] = new SelectList(_context.Menu, "DishId", "DishName", order.DishName);
             return View(order);
         }
 
@@ -89,7 +90,7 @@ namespace ResTask.Areas.Restro.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerName")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerName,DishName,Quantity")] Order order)
         {
             if (id != order.OrderId)
             {
